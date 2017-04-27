@@ -1,0 +1,10 @@
+*.pyc
+*.swp
+.DS_Store
+tmp/
+profile/
+VimballRecord
+password*
+.VimballRecord
+.vim_blog
+doc/tags*
