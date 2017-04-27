@@ -1,0 +1,21 @@
+#! /usr/local/bin/zsh
+
+user_path="/Users/mac-gaogao/"
+
+declare -a dot_files
+dot_files=(
+  ".gitconfig"
+  ".tmux.conf"
+  ".vimrc"
+  ".zshrc"
+)
+
+for dot_file in $dot_files
+do
+  full_path=$user_path$dot_file
+  rm $full_path
+  echo "remove ${full_path}"
+  full_path=$user_path$dot_file
+  cp $dot_file $full_path
+  echo "copy ${dot_file} to ${full_path}"
+done
