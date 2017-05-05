@@ -113,3 +113,4 @@ let g:rehash256 = 1
  nmap <Down>  :res+5<CR>
 
  set backupcopy=yes
+ set backspace=2
