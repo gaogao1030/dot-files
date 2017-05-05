@@ -2,7 +2,7 @@
 
 user_path="/Users/mac-gaogao/"
 
-DATE = " $(date +%s)"
+DATE="$(date +%s)"
 
 
 declare -a dot_files
