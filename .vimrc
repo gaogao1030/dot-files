@@ -27,6 +27,8 @@
  Plugin 'Lokaltog/vim-powerline'
  Plugin 'kchmck/vim-coffee-script'
  Plugin 'leafgarland/typescript-vim'
+ Plugin 'pangloss/vim-javascript'
+ Plugin 'ekalinin/Dockerfile.vim'
  " vim-scripts repos
  Plugin 'L9'
  Plugin 'FuzzyFinder'
