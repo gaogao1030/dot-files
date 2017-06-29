@@ -116,3 +116,11 @@ let g:rehash256 = 1
 
  set backupcopy=yes
  set backspace=2
+
+ "foldmethod base sytax or indent
+ "set foldmethod=indent z+a == syntax'fold z+f == manual'fold
+ set foldmethod=manual
+ "set foldmethod=syntax
+ set nofoldenable
+
+

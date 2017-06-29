@@ -90,4 +90,6 @@ alias tmux="tmux -2"
 alias vim="/usr/local/bin/vim"
 
 export NVM_DIR="/Users/mac-gaogao/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# added by travis gem
+[ -f /Users/mac-gaogao/.travis/travis.sh ] && source /Users/mac-gaogao/.travis/travis.sh
