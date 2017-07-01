@@ -1,6 +1,3 @@
-#rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
 export ZSH=$HOME/.oh-my-zsh
 export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
@@ -93,3 +90,7 @@ export NVM_DIR="/Users/mac-gaogao/.nvm"
 
 # added by travis gem
 [ -f /Users/mac-gaogao/.travis/travis.sh ] && source /Users/mac-gaogao/.travis/travis.sh
+
+#rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
