@@ -29,6 +29,8 @@
  Plugin 'leafgarland/typescript-vim'
  Plugin 'pangloss/vim-javascript'
  Plugin 'ekalinin/Dockerfile.vim'
+ Plugin 'stephenway/postcss.vim'
+ Plugin 'elixir-lang/vim-elixir'
  " vim-scripts repos
  Plugin 'L9'
  Plugin 'FuzzyFinder'
