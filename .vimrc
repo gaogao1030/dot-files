@@ -14,6 +14,9 @@
  " My Plugins here:
  "
  " original repos on github
+ Plugin 'aklt/plantuml-syntax'
+ Plugin 'scrooloose/vim-slumlord'
+ Plugin 'vim-scripts/DrawIt'
  Plugin 'tpope/vim-fugitive'
  Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
  Plugin 'tpope/vim-rails.git'
@@ -31,6 +34,7 @@
  Plugin 'ekalinin/Dockerfile.vim'
  Plugin 'stephenway/postcss.vim'
  Plugin 'elixir-lang/vim-elixir'
+ Plugin 'dhruvasagar/vim-table-mode'
  " vim-scripts repos
  Plugin 'L9'
  Plugin 'FuzzyFinder'

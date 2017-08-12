@@ -4,6 +4,9 @@ export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 
 export PATH=${JAVA_HOME}/bin:$PATH
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" ]
+
 autoload zmv
 
 # Set name of the theme to load.
@@ -85,6 +88,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tmux="tmux -2"
 alias vim="/usr/local/bin/vim"
+alias gfw="proxychains4"
 
 export NVM_DIR="/Users/mac-gaogao/.nvm"
 
@@ -94,3 +98,7 @@ export NVM_DIR="/Users/mac-gaogao/.nvm"
 #rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
