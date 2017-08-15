@@ -14,9 +14,9 @@
  " My Plugins here:
  "
  " original repos on github
- Plugin 'aklt/plantuml-syntax'
- Plugin 'scrooloose/vim-slumlord'
- Plugin 'vim-scripts/DrawIt'
+ " Plugin 'aklt/plantuml-syntax'
+ " Plugin 'scrooloose/vim-slumlord'
+ "Plugin 'vim-scripts/DrawIt'
  Plugin 'tpope/vim-fugitive'
  Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
  Plugin 'tpope/vim-rails.git'
