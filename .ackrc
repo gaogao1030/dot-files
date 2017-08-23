@@ -1,0 +1,8 @@
+--type-add
+js=.coffee,.ts,.es
+
+--type-add
+css=.scss,.less
+
+--type-set
+html=.slim,.haml,.erb

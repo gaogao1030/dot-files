@@ -1,6 +1,11 @@
 
 export ZSH=$HOME/.oh-my-zsh
-export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+#export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home"
+
+#Lang
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 export PATH=${JAVA_HOME}/bin:$PATH
 

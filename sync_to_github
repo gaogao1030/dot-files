@@ -11,6 +11,7 @@ dot_files=(
   ".tmux.conf"
   ".vimrc"
   ".zshrc"
+  ".ackrc"
 )
 
 sync_to_system(){
