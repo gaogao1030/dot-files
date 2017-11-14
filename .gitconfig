@@ -1,8 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-  name = ガオガオ
-  email = gaogao1130@gmail.com
+	name = ガオガオ
+	email = gaogao1130@gmail.com
 [core]
   editor = /usr/local/bin/vim
   quotepath = false

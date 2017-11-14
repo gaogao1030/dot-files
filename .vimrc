@@ -34,7 +34,8 @@
  Plugin 'ekalinin/Dockerfile.vim'
  Plugin 'stephenway/postcss.vim'
  Plugin 'elixir-lang/vim-elixir'
- Plugin 'dhruvasagar/vim-table-mode'
+ Plugin 'Glench/Vim-Jinja'
+ "Plugin 'dhruvasagar/vim-table-mode'
  " vim-scripts repos
  Plugin 'L9'
  Plugin 'FuzzyFinder'
@@ -42,8 +43,8 @@
  Plugin 'git://git.wincent.com/command-t.git'
  Plugin 'slim-template/vim-slim.git'
  Plugin 'AndrewRadev/vim-eco.git'
- Plugin 'gaogao1030/vim-skim'
- Plugin 'gaogao1030/vim-slimbars'
+ "Plugin 'gaogao1030/vim-skim'
+ "Plugin 'gaogao1030/vim-slimbars'
  " git repos on your local machine (ie. when working on your own plugin)
  " ...
 
@@ -125,8 +126,27 @@ let g:rehash256 = 1
 
  "foldmethod base sytax or indent
  "set foldmethod=indent z+a == syntax'fold z+f == manual'fold
- set foldmethod=manual
- "set foldmethod=syntax
+" set foldmethod=manual
  set nofoldenable
 
+ set foldmethod=syntax
+ set foldlevelstart=1
 
+ let javaScript_fold=1         " JavaScript
+ let perl_fold=1               " Perl
+ let php_folding=1             " PHP
+ let r_syntax_folding=1        " R
+ let ruby_fold=1               " Ruby
+ let sh_fold_enabled=1         " sh
+ let vimsyn_folding='af'       " Vim script
+ let xml_syntax_folding=1      " XML
+
+ augroup javascript_folding
+   au!
+   au FileType javascript setlocal foldmethod=syntax
+ augroup END
+
+
+"No configuration is needed, if you are using vim 7.2+, it will detect if a html file is a jinja template.
+"But if you want to ensure it works well, you can edit your vimrc:
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.njk set ft=jinja
