@@ -1,152 +1,214 @@
- set nocompatible               " be iMproved
- filetype off                   " required!
+" ____    ____  __   _______   _______
+" \   \  /   / |  | |       \ |   ____|
+"  \   \/   /  |  | |  .--.  ||  |__
+"   \      /   |  | |  |  |  ||   __|
+"    \    /    |  | |  '--'  ||  |____
+"     \__/     |__| |_______/ |_______|
+"
+autocmd BufNewFile *.lua 0r /tmp/lua.template
+autocmd BufNewFile *.lua normal gnp
+autocmd BufNewFile *.php 0r /tmp/php.template
+autocmd BufNewFile *.php normal gnp
+autocmd BufRead,BufNewFile *.conf setfiletype conf
+autocmd BufRead *.php set includeexpr=substitute(v:fname,'\\\','/','g')
+autocmd BufRead *.php set include=^#\s*use
+autocmd BufRead *.php set suffixesadd+=.php
+autocmd BufWinEnter *.mako set filetype=html
+autocmd BufWinEnter *.sls set filetype=yaml
+autocmd BufWinEnter *.tp set filetype=html
+autocmd BufWinEnter *.volt set filetype=html
+autocmd GUIEnter * silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+autocmd FileType php setlocal commentstring=//\ %s
+autocmd Filetype gitcommit setlocal spell textwidth=72
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&  b:NERDTreeType == "primary") | q | endif
+autocmd BufEnter * lcd %:p:h
+autocmd BufRead,BufNewFile *.scss set filetype=css
+autocmd BufRead,BufNewFile *.coffee set filetype=javascript
 
-" use system clipboard
- set clipboard=unnamed
+call system('bash ~/.vim/lua.template > /tmp/lua.template')
+call system('bash ~/.vim/php.template > /tmp/php.template')
+call system('mkdir -p ~/.vimtmp/undodir ~/.vimtmp/backupdir ~/.vimtmp/directory')
+filetype off
+filetype plugin indent on
+filetype plugin on
+let g:is_bash=1
+let $VIMFILES=$HOME.'/.vim'
+let @w = 'x~n'
+nnoremap <CR> :noh<CR><CR>
+noremap <F3> :Autoformat<CR>
 
- set rtp+=~/.vim/bundle/Vundle.vim
- call vundle#begin()
+nmap <F2> :NERDTreeToggle <CR>
+nmap <c-l> <esc>:noh<cr>
+nmap <leader>a :set filetype=awk        <CR>
+nmap <leader>c :set filetype=css        <CR>
+nmap <leader>d :set filetype=htmldjango <CR>
+nmap <leader>e :set filetype=sed        <CR>
+nmap <leader>h :set filetype=html       <CR>
+nmap <leader>j :set filetype=javascript <CR>
+nmap <leader>l :set filetype=lua        <CR>
+nmap <leader>m :set filetype=markdown   <CR>
+nmap <leader>p :set filetype=php        <CR>
+nmap <leader>s :set filetype=sh         <CR>
+nmap <leader>t :set filetype=txt        <CR>
+nmap <leader>v :set filetype=vim        <CR>
+nmap <leader>y :set filetype=python     <CR>
+nmap <Left>  :vertical res-5<CR>
+nmap <Right> :vertical res+5<CR>
+nmap <Up>    :res-5<CR>
+nmap <Down>  :res+5<CR>
 
- " let Vundle manage Vundle
- " required!
- Plugin 'gmarik/vundle'
+"powerline config begin
+set t_Co=256
+set laststatus=2
+set encoding=utf-8
+set fillchars+=stl:\ ,stlnc:\
+"powerline config end
 
- " My Plugins here:
- "
- " original repos on github
- " Plugin 'aklt/plantuml-syntax'
- " Plugin 'scrooloose/vim-slumlord'
- "Plugin 'vim-scripts/DrawIt'
- Plugin 'tpope/vim-fugitive'
- Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
- Plugin 'tpope/vim-rails.git'
- Plugin 'scrooloose/nerdtree'
- Plugin 'kien/ctrlp.vim'
- Plugin 'msanders/snipmate.vim'
- Plugin 'mileszs/ack.vim'
- Plugin 'Shougo/neocomplcache.vim'
- Plugin 'Townk/vim-autoclose'
- Plugin 'Lokaltog/vim-easymotion'
- Plugin 'Lokaltog/vim-powerline'
- Plugin 'kchmck/vim-coffee-script'
- Plugin 'leafgarland/typescript-vim'
- Plugin 'pangloss/vim-javascript'
- Plugin 'ekalinin/Dockerfile.vim'
- Plugin 'stephenway/postcss.vim'
- Plugin 'elixir-lang/vim-elixir'
- Plugin 'Glench/Vim-Jinja'
- "Plugin 'dhruvasagar/vim-table-mode'
- " vim-scripts repos
- Plugin 'L9'
- Plugin 'FuzzyFinder'
- " non github repos
- Plugin 'git://git.wincent.com/command-t.git'
- Plugin 'slim-template/vim-slim.git'
- Plugin 'AndrewRadev/vim-eco.git'
- "Plugin 'gaogao1030/vim-skim'
- "Plugin 'gaogao1030/vim-slimbars'
- " git repos on your local machine (ie. when working on your own plugin)
- " ...
+set clipboard=unnamed " use system clipboard
+set nocompatible               " be iMproved
+set nu
+set mouse=a
+set backspace=2
+set backupcopy=yes
+set ambiwidth=double
+set autoread
+set autowriteall
+set backup
+set bs+=start
+set smartindent cindent autoindent
+set shiftwidth=2 tabstop=2 smarttab
+set clipboard+=unnamed
+set complete-=i
+set cursorline
+set expandtab
+set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936 fileencoding=utf-8
+set foldmethod=manual
+set hidden hlsearch
+set ignorecase smartcase
+set noautochdir
+set noshowmatch
+set nowrapscan
+set number
+set pastetoggle=<F5>
+set path+=./model/,./ctrl/,./lib/,*/templates/,*/static/,..,*/src/main/java/
+set printoptions=formfeed:y,header:0,paper:A4,duplex:off,syntax:n
+set scrolloff=1
+set shell=/bin/bash
+set nocompatible
+set showcmd                                 " Show cmd in vim-cmdline.
+set t_Co=256                                " Make vim look better in putty.
+set textwidth=0
+set undodir=~/.vimtmp/undodir
+            \ directory=~/.vimtmp/directory
+            \ backupdir=~/.vimtmp/backupdir
+            \ viewdir=~/.vimtmp/view
+            \ undofile
+set vb t_vb=                                " Turn off bi-sound of vim.
+set wildignore+=*.git\\*,*.tgz,*.zip,*.url,*.pyc,*.class
 
- call vundle#end()
- filetype plugin indent on     " required!
- syntax enable
- "
- " Brief help
- " :PluginList          - list configured bundles
- " :PluginInstall(!)    - install(update) bundles
- " :PluginSearch(!) foo - search(or refresh cache first) for foo
- " :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Plugin command are not allowed..
-
- " NERDTree config
- map <F2> :NERDTreeToggle<CR>
- autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&  b:NERDTreeType == "primary") | q | endif
-
- "neocomplache config
- let g:neocomplcache_enable_at_startup = 1
- let g:neocomplcache_force_overwrite_completefunc = 1
-
- " Display extra whitespace
-  set list listchars=tab:»·,trail:·
- "
- fun! StripTrailingWhitespace()
- " Don't strip on these filetypes
-  if &ft =~ 'markdown'
-    return
-  endif
-    %s/\s\+$//e
-  endfun
- autocmd BufWritePre * call StripTrailingWhitespace()
-
- "other config
- set nu
- set mouse=a
- set tabstop=2
- set shiftwidth=2
- set expandtab
- let mapleader = ","
- let g:mapleader = ","
- map Y "+y
- map P "+p  ""
-
- "easymotion
- let g:EasyMotion_leader_key = '<Leader>'
-
- "powerline config
- set t_Co=256
- set laststatus=2
- set encoding=utf-8
- set fillchars+=stl:\ ,stlnc:\
-
- "scheme
+"scheme
 colo molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
+syntax on
 
- "typescript
- let g:typescript_indent_disable = 1
- autocmd QuickFixCmdPost [^l]* nested cwindow
- autocmd QuickFixCmdPost    l* nested lwindow
- autocmd FileType typescript :set makeprg=tsc
+"
+" statusline
+"
+set laststatus=2
+set statusline=(Vide)\ \ %<%f
+set statusline+=%w%h%m%r
+set statusline+=\ %{getcwd()}
+set statusline+=\ [%{&ff}:%{&fenc}:%Y]
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%
 
- "git
- autocmd Filetype gitcommit setlocal spell textwidth=72
+"
+" vim-plug
+"
+call plug#begin('~/.vimplug')
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'vim-syntastic/syntastic'
+Plug 'alvan/vim-php-manual'
+Plug 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'kien/ctrlp.vim'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-rails'
+Plug 'airblade/vim-gitgutter'
+Plug 'Townk/vim-autoclose'
+Plug 'mileszs/ack.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-powerline'
+Plug 'isRuslan/vim-es6'
+Plug 'mxw/vim-jsx'
+Plug 'Chiel92/vim-autoformat'
+Plug 'Valloric/YouCompleteMe'
 
- "panel resize
- nmap <Left>  :vertical res-5<CR>
- nmap <Right> :vertical res+5<CR>
- nmap <Up>    :res-5<CR>
- nmap <Down>  :res+5<CR>
+call plug#end()
 
- set backupcopy=yes
- set backspace=2
+let g:vim_markdown_folding_disabled = 1
+let g:gitgutter_max_signs=10000
 
- "foldmethod base sytax or indent
- "set foldmethod=indent z+a == syntax'fold z+f == manual'fold
-" set foldmethod=manual
- set nofoldenable
-
- set foldmethod=syntax
- set foldlevelstart=1
-
- let javaScript_fold=1         " JavaScript
- let perl_fold=1               " Perl
- let php_folding=1             " PHP
- let r_syntax_folding=1        " R
- let ruby_fold=1               " Ruby
- let sh_fold_enabled=1         " sh
- let vimsyn_folding='af'       " Vim script
- let xml_syntax_folding=1      " XML
-
- augroup javascript_folding
-   au!
-   au FileType javascript setlocal foldmethod=syntax
- augroup END
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 
-"No configuration is needed, if you are using vim 7.2+, it will detect if a html file is a jinja template.
-"But if you want to ensure it works well, you can edit your vimrc:
-au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.njk set ft=jinja
+"
+" autoformat
+"
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+let g:formatters_javascript = ['eslint']
+
+"
+" syntastic
+"
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_quiet_messages = { "level": "errors" }
+
+"easymotion
+let g:EasyMotion_leader_key = '<Leader>'
+
+"
+" NERDTree
+"
+let g:NERDTreeDirArrowExpandable  = '@'
+let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeShowHidden            = 0
+let g:NERDTreeBookmarksFile         = $HOME.'/.vimtmp/NerdBookmarks.txt'
+let g:NERDTreeShowBookmarks         = 1
+let g:NERDTreeShowFiles             = 1
+let g:NERDTreeShowLineNumbers       = 0
+let g:NERDTreeWinSize               = 29
+let g:NERDTreeMinimalUI             = 1
+let g:NERDTreeDirArrows             = 1
+let g:NERDTreeIgnore                = [
+            \ '.*\.class',
+            \ '.*\.pyc',
+            \ '.*\.chm',
+            \ '.*\.ttf',
+            \ '.*\.lnk',
+            \ '.*\.cproj',
+            \ '.*\.exe',
+            \ '.*\.dll',
+            \ '.*\.out',
+            \ '.*\.files',
+            \ '.*\.zip',
+            \ '.*\.rar',
+            \ '.*\.gif'
+            \ ]
+let g:NERDTreeIndicatorMapCustom = {
+            \ "Modified"  : "✹",
+            \ "Staged"    : "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed"   : "➜",
+            \ "Unmerged"  : "═",
+            \ "Deleted"   : "✖",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ "Unknown"   : "?"
+            \ }
+
