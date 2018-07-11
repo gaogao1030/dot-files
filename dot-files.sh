@@ -1,8 +1,8 @@
-declare -a dot_files
+# declare -a dot_files
 dot_files=(
-  ".vimrc"
-  ".gitconfig"
-  ".tmux.conf"
-  ".zshrc"
-  ".ackrc"
+  .vimrc
+  .gitconfig
+  .tmux.conf
+  .zshrc
+  .ackrc
 )
