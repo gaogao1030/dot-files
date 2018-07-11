@@ -25,6 +25,8 @@ autocmd BufEnter * lcd %:p:h
 autocmd BufRead,BufNewFile *.scss set filetype=css
 autocmd BufRead,BufNewFile *.coffee set filetype=javascript
 
+" let g:ycm_path_to_python_interpreter="/usr/bin/python"
+
 call system('bash ~/.vim/lua.template > /tmp/lua.template')
 call system('bash ~/.vim/php.template > /tmp/php.template')
 call system('mkdir -p ~/.vimtmp/undodir ~/.vimtmp/backupdir ~/.vimtmp/directory')
@@ -144,6 +146,7 @@ Plug 'Lokaltog/vim-powerline'
 Plug 'isRuslan/vim-es6'
 Plug 'mxw/vim-jsx'
 Plug 'Chiel92/vim-autoformat'
+
 Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
