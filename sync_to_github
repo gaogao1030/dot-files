@@ -17,7 +17,6 @@ sync_to_system(){
   done
 }
 
-
 sync_from_system(){
   for dot_file in $dot_files
   do
@@ -45,4 +44,3 @@ sync_from_system
 echo "sync_to_github... plz wait"
 sync_to_github
 echo "sync done"
-
