@@ -4,7 +4,14 @@ user_path="/Users/mac-gaogao/"
 
 DATE="$(date +%s)"
 
-source ./dot-files.sh
+#source ./dot-files.sh
+dot_files=(
+  .vimrc
+  .gitconfig
+  .tmux.conf
+  .zshrc
+  .ackrc
+)
 
 sync_to_system(){
   for dot_file in $dot_files
