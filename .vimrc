@@ -24,8 +24,33 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&  b:NERDTre
 autocmd BufEnter * lcd %:p:h
 autocmd BufRead,BufNewFile *.scss set filetype=css
 autocmd BufRead,BufNewFile *.coffee set filetype=javascript
+autocmd BufRead,BufNewFile *.rb set filetype=ruby
 
-" let g:ycm_path_to_python_interpreter="/usr/bin/python"
+"youcompleteme 
+noremap <c-z> <NOP>
+set completeopt=menu,menuone
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }
+let g:ycm_filetype_whitelist = { 
+			\ "c":1,
+			\ "cpp":1, 
+			\ "objc":1,
+      \ "js":1,
+      \ "css":1,
+      \ "scss":1,
+			\ "sh":1,
+			\ "zsh":1,
+			\ }
+
 
 call system('bash ~/.vim/lua.template > /tmp/lua.template')
 call system('bash ~/.vim/php.template > /tmp/php.template')
@@ -58,6 +83,9 @@ nmap <Left>  :vertical res-5<CR>
 nmap <Right> :vertical res+5<CR>
 nmap <Up>    :res-5<CR>
 nmap <Down>  :res+5<CR>
+
+"https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
+set re=1
 
 "powerline config begin
 set t_Co=256
@@ -108,6 +136,7 @@ set undodir=~/.vimtmp/undodir
 set vb t_vb=                                " Turn off bi-sound of vim.
 set wildignore+=*.git\\*,*.tgz,*.zip,*.url,*.pyc,*.class
 
+
 "scheme
 colo molokai
 let g:molokai_original = 1
@@ -146,7 +175,6 @@ Plug 'Lokaltog/vim-powerline'
 Plug 'isRuslan/vim-es6'
 Plug 'mxw/vim-jsx'
 Plug 'Chiel92/vim-autoformat'
-
 Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
@@ -169,6 +197,7 @@ let g:formatters_javascript = ['eslint']
 "
 " syntastic
 "
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_quiet_messages = { "level": "errors" }
 
@@ -178,7 +207,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 "
 " NERDTree
 "
-let g:NERDTreeDirArrowExpandable  = '@'
+let g:NERDTreeDirArrowExpandable  = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 let g:NERDTreeShowHidden            = 0
 let g:NERDTreeBookmarksFile         = $HOME.'/.vimtmp/NerdBookmarks.txt'
