@@ -176,6 +176,7 @@ Plug 'isRuslan/vim-es6'
 Plug 'mxw/vim-jsx'
 Plug 'Chiel92/vim-autoformat'
 Plug 'Valloric/YouCompleteMe'
+Plug 'haya14busa/incsearch.vim'
 
 call plug#end()
 
@@ -187,7 +188,6 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 "
 " autoformat
-"
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
@@ -207,7 +207,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 "
 " NERDTree
 "
-let g:NERDTreeDirArrowExpandable  = '+'
+let g:NERDTreeDirArrowExpandable  = '@'
 let g:NERDTreeDirArrowCollapsible = '-'
 let g:NERDTreeShowHidden            = 0
 let g:NERDTreeBookmarksFile         = $HOME.'/.vimtmp/NerdBookmarks.txt'
@@ -244,3 +244,12 @@ let g:NERDTreeIndicatorMapCustom = {
             \ "Unknown"   : "?"
             \ }
 
+" :h g:incsearch#auto_nohlsearch
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
