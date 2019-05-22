@@ -7,12 +7,12 @@
 "
 autocmd BufNewFile *.lua 0r /tmp/lua.template
 autocmd BufNewFile *.lua normal gnp
-autocmd BufNewFile *.php 0r /tmp/php.template
-autocmd BufNewFile *.php normal gnp
-autocmd BufRead,BufNewFile *.conf setfiletype conf
-autocmd BufRead *.php set includeexpr=substitute(v:fname,'\\\','/','g')
-autocmd BufRead *.php set include=^#\s*use
-autocmd BufRead *.php set suffixesadd+=.php
+" autocmd BufNewFile *.php 0r /tmp/php.template
+" autocmd BufNewFile *.php normal gnp
+" autocmd BufRead,BufNewFile *.conf setfiletype conf
+" autocmd BufRead *.php set includeexpr=substitute(v:fname,'\\\','/','g')
+" autocmd BufRead *.php set include=^#\s*use
+" autocmd BufRead *.php set suffixesadd+=.php
 autocmd BufWinEnter *.mako set filetype=html
 autocmd BufWinEnter *.sls set filetype=yaml
 autocmd BufWinEnter *.tp set filetype=html
@@ -26,34 +26,67 @@ autocmd BufRead,BufNewFile *.scss set filetype=css
 autocmd BufRead,BufNewFile *.coffee set filetype=javascript
 autocmd BufRead,BufNewFile *.rb set filetype=ruby
 
-"youcompleteme 
-noremap <c-z> <NOP>
-set completeopt=menu,menuone
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_key_invoke_completion = '<c-z>'
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
-let g:ycm_filetype_whitelist = { 
-			\ "c":1,
-			\ "cpp":1, 
-			\ "objc":1,
-      \ "js":1,
-      \ "css":1,
-      \ "scss":1,
-			\ "sh":1,
-			\ "zsh":1,
-			\ }
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 
+
+"youcompleteme 
+"
+" let g:ycm_min_num_of_chars_for_completion = 3 
+" let g:ycm_autoclose_preview_window_after_completion=1
+" let g:ycm_complete_in_comments = 1
+" let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+" " 比较喜欢用tab来选择补全...
+" function! MyTabFunction ()
+"     let line = getline('.')
+"     let substr = strpart(line, -1, col('.')+1)
+"     let substr = matchstr(substr, "[^ \t]*$")
+"     if strlen(substr) == 0
+"         return "\<tab>"
+"     endif
+"     return pumvisible() ? "\<c-n>" : "\<c-x>\<c-o>"
+" endfunction
+" inoremap <tab> <c-r>=MyTabFunction()<cr>
+"
+"set completeopt=menu,menuone
+"let g:ycm_add_preview_to_completeopt = 0
+"let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_server_log_level = 'info'
+"let g:ycm_min_num_identifier_candidate_chars = 2
+"let g:ycm_collect_identifiers_from_comments_and_strings = 1
+"let g:ycm_complete_in_strings=1
+"let g:ycm_key_invoke_completion = '<c-z>'
+"let g:ycm_semantic_triggers =  {
+"			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+"			\ 'cs,lua,javascript': ['re!\w{2}'],
+"      \ 'js,css': [ 're!^\s{2}', 're!:\s+' ], 
+"			\ }
+"let g:ycm_filetype_whitelist = { 
+"			\ "c":1,
+"			\ "cpp":1, 
+"			\ "objc":1,
+"      \ "js":1,
+"      \ "css":1,
+"      \ "scss":1,
+"			\ "sh":1,
+"			\ "zsh":1,
+"			\ }
+"let g:ycm_path_to_python_interpreter='/Users/mac-gaogao/.pyenv/shims/python'
+"noremap <c-z> <NOP>
+" Start autocompletion after 4 chars
+let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_enable_diagnostic_highlighting = 0
+" Don't show YCM's preview window [ I find it really annoying ]
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
 
 call system('bash ~/.vim/lua.template > /tmp/lua.template')
-call system('bash ~/.vim/php.template > /tmp/php.template')
+" call system('bash ~/.vim/php.template > /tmp/php.template')
 call system('mkdir -p ~/.vimtmp/undodir ~/.vimtmp/backupdir ~/.vimtmp/directory')
 filetype off
 filetype plugin indent on
@@ -157,10 +190,12 @@ set statusline+=%=%-14.(%l,%c%V%)\ %p%%
 " vim-plug
 "
 call plug#begin('~/.vimplug')
-Plug 'mzlogin/vim-markdown-toc'
-Plug 'vim-syntastic/syntastic'
-Plug 'alvan/vim-php-manual'
-Plug 'plasticboy/vim-markdown'
+Plug 'leafgarland/typescript-vim'
+Plug 'chr4/nginx.vim'
+" Plug 'mzlogin/vim-markdown-toc'
+" Plug 'vim-syntastic/syntastic'
+" Plug 'alvan/vim-php-manual'
+" Plug 'plasticboy/vim-markdown'
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -174,9 +209,14 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'Lokaltog/vim-powerline'
 Plug 'isRuslan/vim-es6'
 Plug 'mxw/vim-jsx'
-Plug 'Chiel92/vim-autoformat'
+Plug 'slim-template/vim-slim'
+" Plug 'Chiel92/vim-autoformat'
 Plug 'Valloric/YouCompleteMe'
 Plug 'haya14busa/incsearch.vim'
+Plug 'marijnh/tern_for_vim'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'wakatime/vim-wakatime'
+Plug 'maksimr/vim-jsbeautify'
 
 call plug#end()
 
@@ -185,6 +225,12 @@ let g:gitgutter_max_signs=10000
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
+" tern
+
+"enable keyboard shortcuts
+let g:tern_map_keys=1
+"show argument hints
+let g:tern_show_argument_hints='on_hold'
 
 "
 " autoformat
@@ -194,20 +240,13 @@ let g:autoformat_remove_trailing_spaces = 0
 let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
 let g:formatters_javascript = ['eslint']
 
-"
-" syntastic
-"
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_quiet_messages = { "level": "errors" }
-
 "easymotion
 let g:EasyMotion_leader_key = '<Leader>'
 
 "
 " NERDTree
 "
-let g:NERDTreeDirArrowExpandable  = '@'
+let g:NERDTreeDirArrowExpandable  = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 let g:NERDTreeShowHidden            = 0
 let g:NERDTreeBookmarksFile         = $HOME.'/.vimtmp/NerdBookmarks.txt'
@@ -253,3 +292,6 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" 解决 vim 滚动卡顿
+set cursorline 

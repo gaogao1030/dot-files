@@ -19,6 +19,7 @@
   bd = branch -d
   bD = branch -D
   dc = diff --cached
+  pb = pull --rebase
 
   # Feature improving aliases
   st = status -sb
