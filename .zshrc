@@ -1,3 +1,6 @@
+export LDFLAGS="-L/usr/local/opt/libffi/lib"
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+
 export ZSH=$HOME/.oh-my-zsh
 #export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home"
@@ -8,9 +11,6 @@ export PYTHONPATH="/Users/mac-gaogao/Github/lianjia-beike-spider"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export PATH=${JAVA_HOME}/bin:$PATH
-export PKG_CONFIG_PATH=/usr/local/opt/zlib/lib/pkgconfig
-
 #rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -20,13 +20,14 @@ eval "$(rbenv init -)"
 # pyenv
 # export PYENV_ROOT="$HOME/.pyenv"
 # export PATH="$PYENV_ROOT/bin:$PATH"
-#
-export PATH=$PATH:/usr/local/sbin
+# export PATH=$PATH:/usr/local/sbin
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
+# nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# [[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
 
 autoload zmv
 
@@ -80,7 +81,7 @@ plugins=(git autojump)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh

@@ -7,12 +7,6 @@
 "
 autocmd BufNewFile *.lua 0r /tmp/lua.template
 autocmd BufNewFile *.lua normal gnp
-" autocmd BufNewFile *.php 0r /tmp/php.template
-" autocmd BufNewFile *.php normal gnp
-" autocmd BufRead,BufNewFile *.conf setfiletype conf
-" autocmd BufRead *.php set includeexpr=substitute(v:fname,'\\\','/','g')
-" autocmd BufRead *.php set include=^#\s*use
-" autocmd BufRead *.php set suffixesadd+=.php
 autocmd BufWinEnter *.mako set filetype=html
 autocmd BufWinEnter *.sls set filetype=yaml
 autocmd BufWinEnter *.tp set filetype=html
@@ -25,6 +19,8 @@ autocmd BufEnter * lcd %:p:h
 autocmd BufRead,BufNewFile *.scss set filetype=css
 autocmd BufRead,BufNewFile *.coffee set filetype=javascript
 autocmd BufRead,BufNewFile *.rb set filetype=ruby
+autocmd BufRead,BufNewFile *.ejs set filetype=html
+autocmd BufRead,BufNewFile *.njk set filetype=html
 
 autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
 autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
@@ -192,10 +188,14 @@ set statusline+=%=%-14.(%l,%c%V%)\ %p%%
 call plug#begin('~/.vimplug')
 Plug 'leafgarland/typescript-vim'
 Plug 'chr4/nginx.vim'
-" Plug 'mzlogin/vim-markdown-toc'
 " Plug 'vim-syntastic/syntastic'
 " Plug 'alvan/vim-php-manual'
-" Plug 'plasticboy/vim-markdown'
+"
+" for markdown plugin
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -220,7 +220,12 @@ Plug 'maksimr/vim-jsbeautify'
 
 call plug#end()
 
+" markdown
+let g:vim_markdown_json_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_github=1
+
 let g:gitgutter_max_signs=10000
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
