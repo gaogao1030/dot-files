@@ -1,18 +1,33 @@
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+
 export LDFLAGS="-L/usr/local/opt/libffi/lib"
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
 export ZSH=$HOME/.oh-my-zsh
 #export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home"
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
-export PYTHONPATH="/Users/mac-gaogao/Github/lianjia-beike-spider"
+#export PYTHON_CONFIGURE_OPTS="--enable-framework"
+#export PYTHONPATH="/Users/mac-gaogao/Github/lianjia-beike-spider"
+
+
+#For compilers to find openssl@1.1 you may need to set:
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
+#For pkg-config to find openssl@1.1 you may need to set:
+#  export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
 #Lang
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 #rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
