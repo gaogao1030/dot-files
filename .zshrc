@@ -1,8 +1,11 @@
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH=$PATH:/Users/mac-gaogao/Library/Python/3.7/bin
 
 
 export LDFLAGS="-L/usr/local/opt/libffi/lib"
@@ -12,8 +15,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 export ZSH=$HOME/.oh-my-zsh
 #export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home"
-#export PYTHON_CONFIGURE_OPTS="--enable-framework"
-#export PYTHONPATH="/Users/mac-gaogao/Github/lianjia-beike-spider"
+export GOPROXY=https://goproxy.cn
 
 
 #For compilers to find openssl@1.1 you may need to set:
@@ -32,12 +34,6 @@ eval "$(rbenv init -)"
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# export PATH=$PATH:/usr/local/sbin
-
-# eval "$(pyenv init -)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -99,6 +95,7 @@ plugins=(git autojump)
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
+source /Users/mac-gaogao/.gvm/scripts/gvm
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -133,6 +130,7 @@ alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias grep="grep --color=auto"
+alias mongo="mongosh"
 
 # added by travis gem
 [ -f /Users/mac-gaogao/.travis/travis.sh ] && source /Users/mac-gaogao/.travis/travis.sh

@@ -4,20 +4,27 @@
 "    \    /    |  | |  '--'  ||  |____
 "     \__/     |__| |_______/ |_______|
 "
+" Proxy PlugInstall and PlugUpdate Command
+let g:plug_curl_command = 'curl --socks5-hostname 127.0.0.1:1080'
 
 "
 " vim-plug
 "
 call plug#begin('~/.vim/.vimplug')
-Plug 'leafgarland/typescript-vim'
 Plug 'chr4/nginx.vim'
+Plug 'preservim/vimux'
+
+"Autocomplete 
+Plug 'ycm-core/YouCompleteMe'
 " Plug 'vim-syntastic/syntastic'
 " Plug 'alvan/vim-php-manual'
 "
 " for markdown plugin
-Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'godlygeek/tabular'
+" Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'plasticboy/vim-markdown'
+Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'leafgarland/typescript-vim'
 
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdtree'
@@ -30,17 +37,12 @@ Plug 'Townk/vim-autoclose'
 Plug 'mileszs/ack.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Lokaltog/vim-powerline'
-Plug 'isRuslan/vim-es6'
-Plug 'mxw/vim-jsx'
 Plug 'slim-template/vim-slim'
-" Plug 'Chiel92/vim-autoformat'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'Chiel92/vim-autoformat'
 Plug 'haya14busa/incsearch.vim'
-Plug 'marijnh/tern_for_vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'wakatime/vim-wakatime'
 Plug 'maksimr/vim-jsbeautify'
-
 
 autocmd FileType ruby compiler ruby
 "
@@ -52,6 +54,7 @@ autocmd BufWinEnter *.mako set filetype=html
 autocmd BufWinEnter *.sls set filetype=yaml
 autocmd BufWinEnter *.tp set filetype=html
 autocmd BufWinEnter *.volt set filetype=html
+autocmd BufWinEnter *.conf set filetype=nginx
 autocmd GUIEnter * silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 autocmd FileType php setlocal commentstring=//\ %s
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -96,13 +99,11 @@ nmap <leader>s :set filetype=sh         <CR>
 nmap <leader>t :set filetype=txt        <CR>
 nmap <leader>v :set filetype=vim        <CR>
 nmap <leader>y :set filetype=python     <CR>
+nmap <leader>n :set filetype=nginx     <CR>
 nmap <Left>  :vertical res-5<CR>
 nmap <Right> :vertical res+5<CR>
 nmap <Up>    :res-5<CR>
 nmap <Down>  :res+5<CR>
-
-"https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
-set re=1
 
 "powerline config begin
 set t_Co=256
@@ -171,42 +172,7 @@ set statusline+=\ %{getcwd()}
 set statusline+=\ [%{&ff}:%{&fenc}:%Y]
 set statusline+=%=%-14.(%l,%c%V%)\ %p%%
 
-
 call plug#end()
-
-" YCM
-let g:ycm_add_preview_to_completeopt = 0
-"let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_key_invoke_completion = '<c-z>'
-noremap <c-z> <NOP>
-set completeopt=menu,menuone
-
-let g:ycm_filetype_whitelist = {'vim': 1, 'javascript.jsx': 1, 'sh': 1, 'html': 1, 'css': 1, 'ruby': 1}
-let g:ycm_semantic_triggers = {
-\   'c' : ['->', '.'],
-\   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-\             're!\[.*\]\s'],
-\   'ocaml' : ['.', '#'],
-\   'cpp,objcpp' : ['->', '.', '::'],
-\   'perl' : ['->'],
-\   'php' : ['->', '::'],
-\   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-\   'ruby' : ['.', '::'],
-\   'lua' : ['.', ':'],
-\   'erlang' : [':'],
-\ }
-
-"let g:ycm_language_server = [
-"\ {
-"\  'name': 'ruby',
-"\  'cmdline': [ expand( '~/.rbenv/shims/solargraph' ), 'stdio' ],
-"\  'filetypes': [ 'ruby' ],
-"\ }]
-
 
 " markdown
 let g:vim_markdown_json_frontmatter = 1
@@ -218,7 +184,11 @@ let g:gitgutter_max_signs=10000
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
-" tern
+" 调整窗口大小
+nnoremap <up> :resize +2<cr>
+nnoremap <down> :resize -2<cr>
+nnoremap <left> :vertical resize +2<cr>
+nnoremap <right> :vertical resize -2<cr>
 
 "enable keyboard shortcuts
 let g:tern_map_keys=1
@@ -286,5 +256,42 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
+" Enable plugins and load plugin for the detected file type.
+" filetype plugin on
+" Enable Omnicomplete features
+" set omnifunc=syntaxcomplete
+" YouCompleteMe a code-completion engine for Vim
+" If you want to disable me, just uncomment the following statement.
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_add_preview_to_completeopt = 0
+
+let g:ycm_min_num_of_chars_for_completion = 3 
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_complete_in_comments = 1
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+" 比较喜欢用tab来选择补全...
+function! MyTabFunction ()
+    let line = getline('.')
+    let substr = strpart(line, -1, col('.')+1)
+    let substr = matchstr(substr, "[^ \t]*$")
+    if strlen(substr) == 0
+        return "\<tab>"
+    endif
+    return pumvisible() ? "\<c-n>" : "\<c-x>\<c-o>"
+endfunction
+inoremap <tab> <c-r>=MyTabFunction()<cr>
+
+" alias Command
+cnoreabbrev zsh term zsh
+cnoreabbrev vzsh :VimuxRunCommand('cd ' . expand('%:p:h') . ' && clear')
+
+
+
 " 解决 vim 滚动卡顿
-" set cursorline 
+set cursorline 
+set re=2
+"re=[num]
+"0   automatic selection
+"1   old engine
+"2   NFA engine

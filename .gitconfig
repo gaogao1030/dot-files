@@ -1,3 +1,8 @@
+# Proxy Git Command
+[http]
+    proxy = socks5://127.0.0.1:1080
+[https]
+    proxy = socks5://127.0.0.1:1080
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
