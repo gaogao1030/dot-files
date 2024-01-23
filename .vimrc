@@ -7,12 +7,14 @@
 " Proxy PlugInstall and PlugUpdate Command
 let g:plug_curl_command = 'curl --socks5-hostname 127.0.0.1:1080'
 
+
 "
 " vim-plug
 "
 call plug#begin('~/.vim/.vimplug')
 Plug 'chr4/nginx.vim'
 Plug 'preservim/vimux'
+Plug 'vim-python/python-syntax'
 
 "Autocomplete 
 Plug 'ycm-core/YouCompleteMe'
@@ -24,6 +26,7 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'plasticboy/vim-markdown'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'maksimr/vim-jsbeautify'
 Plug 'leafgarland/typescript-vim'
 
 Plug 'godlygeek/tabular'
@@ -42,7 +45,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'haya14busa/incsearch.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'wakatime/vim-wakatime'
-Plug 'maksimr/vim-jsbeautify'
+call plug#end()
 
 autocmd FileType ruby compiler ruby
 "
@@ -172,7 +175,17 @@ set statusline+=\ %{getcwd()}
 set statusline+=\ [%{&ff}:%{&fenc}:%Y]
 set statusline+=%=%-14.(%l,%c%V%)\ %p%%
 
-call plug#end()
+" PythonSyntax
+let g:python_highlight_all = 1
+au Filetype python set tabstop=4
+au Filetype python set softtabstop=4
+au Filetype python set shiftwidth=4
+au Filetype python set textwidth=79
+au Filetype python set expandtab
+au Filetype python set autoindent
+au Filetype python set fileformat=unix
+autocmd Filetype python set foldmethod=indent
+autocmd Filetype python set foldlevel=99
 
 " markdown
 let g:vim_markdown_json_frontmatter = 1
@@ -211,7 +224,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 "
 let g:NERDTreeDirArrowExpandable  = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
-let g:NERDTreeShowHidden            = 0
+let g:NERDTreeShowHidden            = 1
 let g:NERDTreeBookmarksFile         = $HOME.'/.vimtmp/NerdBookmarks.txt'
 let g:NERDTreeShowBookmarks         = 1
 let g:NERDTreeShowFiles             = 1
@@ -285,7 +298,6 @@ inoremap <tab> <c-r>=MyTabFunction()<cr>
 " alias Command
 cnoreabbrev zsh term zsh
 cnoreabbrev vzsh :VimuxRunCommand('cd ' . expand('%:p:h') . ' && clear')
-
 
 
 " 解决 vim 滚动卡顿

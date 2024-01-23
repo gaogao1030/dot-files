@@ -5,8 +5,8 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH=$PATH:/Users/mac-gaogao/Library/Python/3.7/bin
-
+export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
+export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 
 export LDFLAGS="-L/usr/local/opt/libffi/lib"
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
@@ -31,9 +31,14 @@ export LANG=en_US.UTF-8
 
 #rbenv
 eval "$(rbenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+#pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -131,6 +136,8 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias grep="grep --color=auto"
 alias mongo="mongosh"
+alias pip="pip3"
 
 # added by travis gem
 [ -f /Users/mac-gaogao/.travis/travis.sh ] && source /Users/mac-gaogao/.travis/travis.sh
+
