@@ -1,8 +1,0 @@
-source ./dot-files.sh
-
-echo "sync_from_github... plz wait"
-sync_from_github
-echo "sync_to_system... plz wait"
-sync_to_system
-echo "sync done"
-
