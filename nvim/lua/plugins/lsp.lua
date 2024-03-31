@@ -6,21 +6,19 @@ return {
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
-      servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pycodestyle = {
-                  -- ignore = { "W391" },
-                  maxLineLength = 120,
-                },
+      require("lspconfig").pylsp.setup({
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                -- ignore = { "W391" },
+                maxLineLength = 100,
               },
             },
           },
         },
-      },
+      }),
     },
   },
 }
+-- return {}
